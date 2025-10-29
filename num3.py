@@ -3,11 +3,11 @@ import random
 
 window = Tk()
 window.geometry("500x400")
-window.resizable(height=False, width=False)
-bg_img = PhotoImage(file='background.png')
+window.resizable(height = False, width = False)
+bg_img = PhotoImage(file = 'background.png')
 
-lbl_bg = Label(window, image=bg_img)
-lbl_bg.place(x=0, y=0,relwidth=1, relheight=1)
+lbl_bg = Label(window, image = bg_img)
+lbl_bg.place(x = 0, y = 0,relwidth = 1, relheight = 1)
 
 
 def close():
@@ -32,7 +32,7 @@ def generate():
     key = []
     while amount != 3:
         total_sum = 0
-        random_elements = random.choices(list(symb_list), k=4)
+        random_elements = random.choices(list(symb_list), k = 4)
         for element in random_elements:
             if element in alphabet:
                 total_sum += alphabet[element]
@@ -45,21 +45,22 @@ def generate():
                 
             
             
-button_exit = Button(height=1, width=7, bg="#b51111",
-text='Close', font=('Arial', 15, 'bold'), command = close)
-button_exit.place(x=410,y=0)
+button_exit = Button(height = 1, width = 7, bg = "#b51111",
+text = 'Close', font=('Arial', 15, 'bold'), command = close)
+button_exit.place(x = 410,y = 0)
 
-label_welcome = Label(width=45, text="Добро пожаловать! Сгенерировать ключ можно ниже",
-font=('Arial', 13, 'bold'), bg="#ffffff")
-label_welcome.place(x=20,y=150)
-
-
-label_key = Label(width=20, font=('Arial', 13, 'bold'), bg="#A29F9F")
-label_key.place(x=130,y=200)
+label_welcome = Label(width = 45, text = "Добро пожаловать! Сгенерировать ключ можно ниже",
+font=('Arial', 13, 'bold'), bg = "#ffffff")
+label_welcome.place(x = 20,y = 150)
 
 
-button_generate = Button(height=1, width=10, bg="#fffb21",
+label_key = Label(width = 20, font=('Arial', 13, 'bold'), bg = "#A29F9F")
+label_key.place(x = 130,y = 200)
+
+
+button_generate = Button(height = 1, width = 10, bg = "#fffb21",
 text='Generate key', font=('Arial', 13, 'bold'), command = generate)
-button_generate.place(x=180,y=250)
+button_generate.place(x = 180,y = 250)
+
 
 window.mainloop()
