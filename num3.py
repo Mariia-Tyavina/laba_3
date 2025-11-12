@@ -1,18 +1,41 @@
-from tkinter import*
+import tkinter as tk
 import random
+from pygame import mixer
 
-window = Tk()
+window = tk.Tk()
 window.geometry("500x400")
+window.title("Content Warning")
 window.resizable(height = False, width = False)
-bg_img = PhotoImage(file = 'background.png')
+bg_img = tk.PhotoImage(file = 'background.png')
 
-lbl_bg = Label(window, image = bg_img)
-lbl_bg.place(x = 0, y = 0,relwidth = 1, relheight = 1)
+lbl_bg = tk.Label(window, image = bg_img)
+lbl_bg.place(x = 0, y = 0, relwidth = 1, relheight = 1)
+
+title_label = tk.Label(window, text = 'KEY GENERATOR',
+                       font = ('Arial', 20, 'bold'),
+                       bg = "#1a1a1a", fg = 'red')
+title_label.place(x = 110, y = 20)
+animating = True
+colors = ['red', 'blue', 'white', 'pink', 'yellow']
+
+
+def music_play():
+    mixer.init()
+    mixer.music.load('Music content.mp3')
+    mixer.music.play(-1)
 
 
 def close():
     window.destroy()
     
+
+def title_animation():
+    if animating:
+        color_now = random.choice(colors)
+        title_label.config(fg = color_now)
+        interval = random.randint(300, 600)
+        window.after(interval, title_animation)
+
     
 def generate():
     amount = 0
@@ -45,22 +68,25 @@ def generate():
                 
             
             
-button_exit = Button(height = 1, width = 7, bg = "#b51111",
-text = 'Close', font=('Arial', 15, 'bold'), command = close)
+button_exit = tk.Button(height = 1, width = 7, bg = "#b51111",
+text='Close', font=('Arial', 15, 'bold'), command = close)
 button_exit.place(x = 410,y = 0)
 
-label_welcome = Label(width = 45, text = "Добро пожаловать! Сгенерировать ключ можно ниже",
+label_welcome =tk. Label(width = 45, text = "Добро пожаловать! Сгенерировать ключ можно ниже",
 font=('Arial', 13, 'bold'), bg = "#ffffff")
 label_welcome.place(x = 20,y = 150)
 
 
-label_key = Label(width = 20, font=('Arial', 13, 'bold'), bg = "#A29F9F")
+label_key = tk.Label(width = 20, font = ('Arial', 13, 'bold'), bg = "#A29F9F")
 label_key.place(x = 130,y = 200)
 
 
-button_generate = Button(height = 1, width = 10, bg = "#fffb21",
+button_generate = tk.Button(height = 1, width = 10, bg = "#fffb21",
 text='Generate key', font=('Arial', 13, 'bold'), command = generate)
 button_generate.place(x = 180,y = 250)
 
 
-window.mainloop()
+if __name__ == "__main__":
+    music_play()
+    title_animation()
+    window.mainloop()
